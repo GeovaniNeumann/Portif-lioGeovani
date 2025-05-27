@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTIDÓLIO | Desenvolvedor Web e Mobile</title>
+    <title>Portifólio | Desenvolvedor Web e Mobile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -26,6 +26,7 @@
             background-color: var(--primary-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -39,12 +40,13 @@
         header {
             background-color: rgba(0, 0, 0, 0.9);
             color: var(--text-color);
-            padding: 20px 0;
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: padding 0.3s;
         }
 
         .header-container {
@@ -79,6 +81,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 16px;
         }
 
         nav ul li a:hover {
@@ -89,17 +92,25 @@
             display: none;
             cursor: pointer;
             font-size: 24px;
+            color: var(--text-color);
+            z-index: 1001;
+            transition: transform 0.3s;
+        }
+
+        .menu-toggle.active {
+            transform: rotate(90deg);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             background: linear-gradient(-45deg, #000000, #121212, #1a1a1a, #000000);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            padding-top: 80px;
+            padding-top: 70px;
         }
 
         @keyframes gradientBG {
@@ -113,6 +124,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .hero-text {
@@ -165,6 +177,7 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .btn:hover {
@@ -237,6 +250,8 @@
         .about-text p {
             margin-bottom: 15px;
             color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.7;
         }
 
         .skills {
@@ -266,7 +281,7 @@
 
         .about-image {
             flex: 1;
-            min-width: 400px;
+            min-width: 300px;
             text-align: center;
         }
 
@@ -297,10 +312,12 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 14px;
         }
 
         .filter-btn.active, .filter-btn:hover {
-            background-color: none
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
             color: #000;
         }
 
@@ -355,6 +372,7 @@
             margin-bottom: 15px;
             font-size: 14px;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
         .portfolio-tech {
@@ -368,7 +386,6 @@
             background-color: #121212;
             color: var(--text-color);
             padding: 4px 10px;
-            border-radius: 10px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
@@ -387,10 +404,11 @@
             display: flex;
             align-items: center;
             transition: color 0.3s;
+            padding: 5px 0;
         }
 
         .portfolio-links a:hover {
-            color: var(--text-color);
+            color: var(--secondary-color);
         }
 
         .portfolio-links a i {
@@ -401,6 +419,7 @@
         .contact {
             text-align: center;
             background-color: var(--primary-color);
+            padding: 100px 0;
         }
 
         .contact-info {
@@ -408,7 +427,6 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            margin-bottom: 50px;
         }
 
         .contact-card {
@@ -435,61 +453,18 @@
         .contact-card h3 {
             margin-bottom: 10px;
             color: var(--text-color);
+            font-size: 18px;
         }
 
         .contact-card p, .contact-card a {
             color: var(--text-muted);
             text-decoration: none;
             font-size: 14px;
+            line-height: 1.6;
         }
 
         .contact-card a:hover {
             color: var(--secondary-color);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        .form-control:focus {
-            border-color: var(--secondary-color);
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.1);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
         }
 
         /* Footer */
@@ -533,6 +508,8 @@
         .footer-col p {
             margin-bottom: 15px;
             color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
         }
 
         .social-links {
@@ -550,6 +527,7 @@
             border-radius: 50%;
             color: var(--text-color);
             transition: all 0.3s;
+            font-size: 18px;
         }
 
         .social-links a:hover {
@@ -570,6 +548,7 @@
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 15px;
         }
 
         .footer-links a:hover {
@@ -642,6 +621,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .floating-btn:hover {
@@ -658,69 +638,111 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .hero-text h1 {
-                font-size: 40px;
+                font-size: 42px;
             }
             
             .hero-image img {
-                width: 300px;
-                height: 300px;
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-text h1 {
+                font-size: 38px;
+            }
+            
+            .hero-image img {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .section {
+                padding: 80px 0;
             }
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 12px 0;
+            }
+            
             .menu-toggle {
                 display: block;
             }
 
             nav {
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
                 width: 100%;
+                height: 100vh;
                 background-color: rgba(0, 0, 0, 0.95);
-                padding: 20px;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease-out;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                clip-path: circle(0% at 100% 0);
+                transition: clip-path 0.6s ease-in-out;
+                z-index: 999;
             }
 
             nav.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                clip-path: circle(150% at 100% 0);
             }
 
             nav ul {
                 flex-direction: column;
+                align-items: center;
+                padding: 0;
             }
 
             nav ul li {
-                margin: 10px 0;
+                margin: 15px 0;
+            }
+            
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            .hero {
+                height: auto;
+                padding: 100px 0 60px;
+                min-height: auto;
             }
 
             .hero-content {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 40px;
+                padding-top: 0;
             }
 
             .hero-text {
                 padding-right: 0;
                 margin-bottom: 40px;
+                margin-top: 40px;
             }
 
             .hero-buttons {
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
             }
 
             .section {
-                padding: 70px 0;
+                padding: 60px 0;
             }
 
             .section-title h2 {
-                font-size: 30px;
+                font-size: 32px;
             }
-
+            
             .about-content {
                 flex-direction: column;
             }
@@ -731,8 +753,23 @@
 
             .about-image {
                 order: 1;
+                margin-bottom: 30px;
             }
-
+            
+            .portfolio-filter {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 13px;
+            }
+            
+            .contact-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
             .floating-buttons {
                 bottom: 20px;
                 left: 20px;
@@ -746,25 +783,71 @@
         }
 
         @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 15px;
+            }
+            
             .hero-text h1 {
                 font-size: 32px;
+                margin-bottom: 15px;
             }
 
+            .hero-text p {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+            
+            .hero-image img {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                width: 100%;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .section-title h2::after {
+                width: 60px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-col {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            
             .hero-image img {
                 width: 250px;
                 height: 250px;
             }
-
-            .btn {
-                padding: 10px 20px;
-            }
-
+            
             .section-title h2 {
                 font-size: 26px;
             }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            
+            .filter-btn {
+                font-size: 12px;
+                padding: 5px 12px;
             }
         }
     </style>
@@ -773,7 +856,7 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">PORTIFÓLIO<span>DEV</span></a>
+            <a href="#" class="logo">Portifólio<span>Dev</span></a>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -791,6 +874,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
+            <div class="hero-image">
+                <img src="https://i.ibb.co/CjM5033/eu.jpg" alt="Foto do Desenvolvedor">
+            </div>
             <div class="hero-text">
                 <h1>Olá, eu sou <span>Geovani Neumann</span></h1>
                 <p>Desenvolvedor Front-end | Soluções Web e Mobile
@@ -799,9 +885,6 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
                     <a href="#portfolio" class="btn">Ver Portfólio</a>
                     <a href="#contact" class="btn btn-outline">Contato</a>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://i.ibb.co/CjM5033/eu.jpg" alt="Foto do Desenvolvedor">
             </div>
         </div>
     </section>
@@ -813,10 +896,13 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
                 <h2>Sobre Mim</h2>
             </div>
             <div class="about-content">
+                <div class="about-image">
+                    <img src="https://i.ibb.co/WWt6XbXt/programador.png" alt="Trabalhando no computador">
+                </div>
                 <div class="about-text">
                     <h3>Desenvolvedor Web & Mobile</h3>
                     <p>Meu nome é Geovani Neumann e sou apaixonado por criar soluções digitais que resolvem problemas reais. Com formação em Análise e Desenvolvimento de Sistemas e especialização em Desenvolvimento Web, trabalho transformando ideias em produtos digitais funcionais e bonitos.</p>
-                    <p>Acredito que a tecnologia deve ser acessível e intuitiva para todos, por isso me dedico a criar interfaces limpas e experiências de usuário memoráveis.</p>
+                    <p>Acredito que a tecnologia deve ser acessível e intuitiva para todos, por isso me dedico a criar interfaces limpas e experiências de usuão memoráveis.</p>
                     
                     <div class="skills">
                         <h4>Minhas Habilidades</h4>
@@ -834,9 +920,6 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
                             <span class="skill">Git</span>
                         </div>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://i.ibb.co/WWt6XbXt/programador.png" alt="Trabalhando no computador">
                 </div>
             </div>
         </div>
@@ -1007,6 +1090,8 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
                     <h3>WhatsApp</h3>
                     <a href="https://wa.me/5541997552818" target="_blank">Enviar mensagem</a>
                 </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -1073,6 +1158,14 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
         
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Alternar entre ícone de menu e X
+            if (menuToggle.classList.contains('active')) {
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
         });
         
         // Close menu when clicking on a link
@@ -1080,6 +1173,8 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
         
@@ -1140,30 +1235,10 @@ Especializado no desenvolvimento front-end, crio interfaces modernas, responsiva
                 }
             });
         });
-        
-        // Form Submission
-        const contactForm = document.querySelector('.contact-form');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the form data to a server
-            // For this example, we'll just log it and show an alert
-            console.log({ name, email, subject, message });
-            
-            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-            contactForm.reset();
-        });
 
         // Detecta se é mobile para abrir WhatsApp app diretamente
         if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            document.querySelector('.floating-btn.whatsapp').setAttribute('href', 'whatsapp://send?phone=5511999999999');
+            document.querySelector('.floating-btn.whatsapp').setAttribute('href', 'whatsapp://send?phone=5541997552818');
         }
     </script>
 </body>

@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifólio | Desenvolvedor Web </title>
+    <title>Geovani Neumann | Desenvolvedor Front-end</title>
+    <meta name="description" content="Desenvolvedor Front-end especializado em criar experiências web modernas e responsivas">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #000000;
             --secondary-color: #994828;
             --accent-color: #0099ff;
-            --text-color: #eeeeeeea;
+            --text-color: #eeeeee;
             --text-muted: #aaaaaa;
             --card-bg: #121212;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--primary-color);
             color: var(--text-color);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -36,17 +39,23 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header Otimizado */
         header {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: var(--text-color);
+            background-color: rgba(0, 0, 0, 0.95);
             padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: padding 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
         .header-container {
@@ -56,14 +65,29 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
         }
 
         .logo span {
             color: var(--secondary-color);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
         }
 
         /* Navigation */
@@ -74,14 +98,32 @@
 
         nav ul li {
             margin-left: 30px;
+            position: relative;
         }
 
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             font-size: 16px;
+            padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
         }
 
         nav ul li a:hover {
@@ -101,16 +143,27 @@
             transform: rotate(90deg);
         }
 
-        /* Hero Section */
+        /* Hero Section Melhorada */
         .hero {
-            height: 100vh;
-            min-height: 600px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             background: linear-gradient(-45deg, #000000, #121212, #1a1a1a, #000000);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            padding-top: 70px;
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(153, 72, 40, 0.1) 0%, transparent 50%);
         }
 
         @keyframes gradientBG {
@@ -120,40 +173,115 @@
         }
 
         .hero-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
             width: 100%;
         }
 
         .hero-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 40px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero-text h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
-            color: var(--text-color);
         }
 
         .hero-text h1 span {
             color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-text h1 span:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .hero-text p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
             color: var(--text-muted);
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(153, 72, 40, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: #000;
         }
 
         .hero-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 0.8s ease-out;
         }
 
         .hero-image img {
@@ -163,39 +291,13 @@
             width: 400px;
             height: 400px;
             object-fit: cover;
-            box-shadow: 0 0 30px rgb(0, 0, 0);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: #e2e2e2;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgb(250, 253, 252);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--text-color);
-            color: #000;
+        .hero-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(153, 72, 40, 0.4);
         }
 
         /* About Section */
@@ -210,7 +312,7 @@
         }
 
         .section-title h2 {
-            font-size: 36px;
+            font-size: 2.5rem;
             color: var(--text-color);
             position: relative;
             display: inline-block;
@@ -230,19 +332,14 @@
         }
 
         .about-content {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
+            align-items: center;
         }
 
         .about-text h3 {
-            font-size: 28px;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: var(--text-color);
         }
@@ -250,7 +347,7 @@
         .about-text p {
             margin-bottom: 15px;
             color: var(--text-muted);
-            font-size: 16px;
+            font-size: 1.1rem;
             line-height: 1.7;
         }
 
@@ -260,7 +357,7 @@
 
         .skills h4 {
             margin-bottom: 15px;
-            font-size: 20px;
+            font-size: 1.5rem;
             color: var(--text-color);
         }
 
@@ -277,12 +374,18 @@
             border-radius: 10px;
             font-size: 14px;
             border: 2px solid rgba(245, 227, 227, 0.712);
+            transition: var(--transition);
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(153, 72, 40, 0.2);
         }
 
         .about-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .about-image img {
@@ -311,7 +414,7 @@
             color: var(--text-color);
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-size: 14px;
         }
 
@@ -332,7 +435,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -345,6 +448,7 @@
         .portfolio-img {
             height: 200px;
             overflow: hidden;
+            position: relative;
         }
 
         .portfolio-img img {
@@ -356,6 +460,24 @@
 
         .portfolio-item:hover .portfolio-img img {
             transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
         }
 
         .portfolio-info {
@@ -435,7 +557,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 250px;
-            transition: transform 0.3s;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -526,7 +648,7 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--text-color);
-            transition: all 0.3s;
+            transition: var(--transition);
             font-size: 18px;
         }
 
@@ -583,7 +705,7 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: var(--transition);
             z-index: 999;
             box-shadow: 0 0 20px rgba(231, 223, 223, 0.87);
         }
@@ -619,7 +741,7 @@
             font-size: 24px;
             color: white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
+            transition: var(--transition);
             cursor: pointer;
             text-decoration: none;
         }
@@ -637,10 +759,33 @@
             background-color: #0077B5;
         }
 
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .hero-text h1 {
-                font-size: 42px;
+                font-size: 3rem;
             }
             
             .hero-image img {
@@ -650,8 +795,25 @@
         }
 
         @media (max-width: 992px) {
+            .hero-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 60px;
+            }
+            
+            .hero-text p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
             .hero-text h1 {
-                font-size: 38px;
+                font-size: 2.8rem;
             }
             
             .hero-image img {
@@ -708,19 +870,10 @@
             }
 
             .hero {
-                height: auto;
                 padding: 100px 0 60px;
-                min-height: auto;
-            }
-
-            .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 0;
             }
 
             .hero-text {
-                padding-right: 0;
                 margin-bottom: 40px;
                 margin-top: 40px;
             }
@@ -740,7 +893,7 @@
             }
 
             .section-title h2 {
-                font-size: 32px;
+                font-size: 2rem;
             }
             
             .about-content {
@@ -789,12 +942,12 @@
             }
             
             .hero-text h1 {
-                font-size: 32px;
+                font-size: 2.2rem;
                 margin-bottom: 15px;
             }
 
             .hero-text p {
-                font-size: 16px;
+                font-size: 1rem;
                 margin-bottom: 25px;
             }
             
@@ -809,7 +962,7 @@
             }
             
             .section-title h2 {
-                font-size: 28px;
+                font-size: 1.8rem;
             }
             
             .section-title h2::after {
@@ -833,7 +986,7 @@
         
         @media (max-width: 400px) {
             .hero-text h1 {
-                font-size: 28px;
+                font-size: 2rem;
             }
             
             .hero-image img {
@@ -842,7 +995,7 @@
             }
             
             .section-title h2 {
-                font-size: 26px;
+                font-size: 1.6rem;
             }
             
             .filter-btn {
@@ -850,19 +1003,36 @@
                 padding: 5px 12px;
             }
         }
+
+        /* Melhorias de acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">Geovani<span>Neumann</span></a>
+            <a href="#" class="logo">
+                <div class="logo-img">GN</div>
+                Geovani<span>Neumann</span>
+            </a>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">Sobre Mim</a></li>
                     <li><a href="#portfolio">Portfólio</a></li>
                     <li><a href="#contact">Contato</a></li>
@@ -874,9 +1044,6 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <div class="hero-image">
-                <img src="https://i.ibb.co/CjM5033/eu.jpg" alt="Foto do Desenvolvedor">
-            </div>
             <div class="hero-text">
                 <h1>Olá, eu sou <span>Geovani Neumann</span></h1>
                 <p>Desenvolvedor Front-end que transforma ideias em experiências digitais fluidas. Meu segredo? Código eficiente + design que engaja. Precisa de um projeto sem dor de cabeça? Fale comigo!</p>
@@ -884,6 +1051,9 @@
                     <a href="#portfolio" class="btn">Ver Portfólio</a>
                     <a href="#contact" class="btn btn-outline">Contato</a>
                 </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.ibb.co/CjM5033/eu.jpg" alt="Foto do Desenvolvedor Geovani Neumann">
             </div>
         </div>
     </section>
@@ -900,7 +1070,8 @@
                 </div>
                 <div class="about-text">
                     <h3>Desenvolvedor Web</h3>
-<p>Apaixonado por criar soluções digitais que resolvem problemas reais. Com formação em Análise e Desenvolvimento de Sistemas e especialização em Desenvolvimento Web, trabalho transformando ideias em produtos digitais funcionais e bonitos.</p> <p>Acredito que a tecnologia deve ser acessível e intuitiva para todos, por isso me dedico a criar interfaces limpas e experiências de usuário memoráveis.</p>
+                    <p>Apaixonado por criar soluções digitais que resolvem problemas reais. Com formação em Análise e Desenvolvimento de Sistemas e especialização em Desenvolvimento Web, trabalho transformando ideias em produtos digitais funcionais e bonitos.</p> 
+                    <p>Acredito que a tecnologia deve ser acessível e intuitiva para todos, por isso me dedico a criar interfaces limpas e experiências de usuário memoráveis.</p>
                     
                     <div class="skills">
                         <h4>Minhas Habilidades</h4>
@@ -908,6 +1079,11 @@
                             <span class="skill">HTML5</span>
                             <span class="skill">CSS3</span>
                             <span class="skill">JavaScript</span>
+                            <span class="skill">React</span>
+                            <span class="skill">Responsive Design</span>
+                            <span class="skill">UI/UX</span>
+                            <span class="skill">Git</span>
+                            <span class="skill">Figma</span>
                         </div>
                     </div>
                 </div>
@@ -919,25 +1095,37 @@
     <section class="section portfolio" id="portfolio">
         <div class="container">
             <div class="section-title">
-                <h2>Meu Portifólio</h2>
+                <h2>Meu Portfólio</h2>
             </div>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Sites">Sites</button>
+                <button class="filter-btn" data-filter="E-commerce">E-commerce</button>
+                <button class="filter-btn" data-filter="Aplicativos">Aplicativos</button>
+            </div>
+            
             <div class="portfolio-grid">
                 <!-- DL FRIOS -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/vxJq0MrG/DLfrios.png" alt="sites">
+                        <img src="https://i.ibb.co/vxJq0MrG/DLfrios.png" alt="DL Frios - Revendedora de Frios">
+                        <div class="portfolio-overlay">
+                            <a href="https://dlfrios.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>DL frios</h3>
-                        <p>Página para revendedora de frios</p>
+                        <h3>DL Frios</h3>
+                        <p>Página para revendedora de frios com catálogo de produtos e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
                             <a href="https://dlfrios.netlify.app/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Visitar Site</a>
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -945,19 +1133,23 @@
                 <!-- LA CAR CENTER PRIME -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/5WvfMmtY/290934789-111916194900170-6726135520908903375-n.jpg" alt="Sites">
+                        <img src="https://i.ibb.co/5WvfMmtY/290934789-111916194900170-6726135520908903375-n.jpg" alt="LA Car Center Prime - Oficina Mecânica">
+                        <div class="portfolio-overlay">
+                            <a href="https://lacarcenterprime.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>LA Car center prime</h3>
-                        <p>Página para oficina mecânica</p>
+                        <p>Página para oficina mecânica com serviços, portfólio e formulário de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
                             <a href="https://lacarcenterprime.netlify.app/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Visitar Site</a>
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -965,19 +1157,23 @@
                 <!-- NEUMANN ESTETICA AUTOMOTIVA -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/DfmTL56n/lavacarprimo.jpg" alt="Loja Virtual">
+                        <img src="https://i.ibb.co/DfmTL56n/lavacarprimo.jpg" alt="Neumann Estética Automotiva">
+                        <div class="portfolio-overlay">
+                            <a href="https://neumannesteticaautomotiva.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>Neumann Estética Automotiva</h3>
-                        <p>Página para estética automotiva.</p>
+                        <p>Página para estética automotiva com serviços, galeria e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
-                        <a href="https://neumannesteticaautomotiva.netlify.app/" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-external-link-alt"></i> Visitar Site</a>    
+                            <a href="https://neumannesteticaautomotiva.netlify.app/" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>    
                         </div>
                     </div>
                 </div>
@@ -985,19 +1181,23 @@
                 <!-- ADRIANA BOLOS  -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/y3SzBvT/Logo-adriana.png" alt="Loja Virtual">
+                        <img src="https://i.ibb.co/y3SzBvT/Logo-adriana.png" alt="Adriana Bolos - Confeitaria">
+                        <div class="portfolio-overlay">
+                            <a href="https://adrianabolos.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>Adriana Bolos</h3>
-                        <p>Página para Confeitaria.</p>
+                        <p>Página para Confeitaria com catálogo de produtos, sobre e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
-                        <a href="https://adrianabolos.netlify.app/" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-external-link-alt"></i> Visitar Site</a>    
+                            <a href="https://adrianabolos.netlify.app/" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>    
                         </div>
                     </div>
                 </div>
@@ -1005,39 +1205,47 @@
                 <!-- CANTINHO DAS BONECAS -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/Wbrpc91/Logotipo-Juracema-neumann.jpg" alt="Sites">
+                        <img src="https://i.ibb.co/Wbrpc91/Logotipo-Juracema-neumann.jpg" alt="Cantinho Das Bonecas - Artesanatos">
+                        <div class="portfolio-overlay">
+                            <a href="https://cantinhodasbonecas.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>Cantinho Das Bonecas</h3>
-                        <p>Página para artesanatos e decoração.</p>
+                        <p>Página para artesanatos e decoração com galeria de produtos e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
                             <a href="https://cantinhodasbonecas.netlify.app/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Visitar Site</a>
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                  <!-- ANJUS HOT DOG -->
+                <!-- ANJUS HOT DOG -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/whDQ6TFL/logoanjus.png" alt="Sites">
+                        <img src="https://i.ibb.co/whDQ6TFL/logoanjus.png" alt="Anjus Hot Dog - Lanchonete">
+                        <div class="portfolio-overlay">
+                            <a href="https://anjushotdog.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>Anjus Hot Dog</h3>
-                        <p>Página para Cachorro Quente.</p>
+                        <p>Página para Cachorro Quente com cardápio, localização e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
                             <a href="https://anjushotdog.netlify.app/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-external-link-alt"></i> Visitar Site</a>
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1045,23 +1253,26 @@
                 <!-- BRITO PERSONAL -->
                 <div class="portfolio-item" data-category="Sites">
                     <div class="portfolio-img">
-                        <img src="https://i.ibb.co/jd7bkKP/Logobrito.jpg" alt="Site personal">
+                        <img src="https://i.ibb.co/jd7bkKP/Logobrito.jpg" alt="Anderson Brito - Personal Trainer">
+                        <div class="portfolio-overlay">
+                            <a href="https://anderbritto.netlify.app/" target="_blank" class="btn">Ver Projeto</a>
+                        </div>
                     </div>
                     <div class="portfolio-info">
                         <h3>Anderson Brito</h3>
-                        <p>Página para personal trainer.</p>
+                        <p>Página para personal trainer com serviços, depoimentos e informações de contato.</p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="portfolio-links">
-                        <a href="https://anderbritto.netlify.app/" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-external-link-alt"></i> Visitar Site</a>  
+                            <a href="https://anderbritto.netlify.app/" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Visitar Site
+                            </a>  
                         </div>
                     </div>
                 </div>
-             
             </div>
         </div>
     </section>
@@ -1123,12 +1334,15 @@
                     <h3>Serviços</h3>
                     <ul class="footer-links">
                         <li><a href="#">Desenvolvimento Web</a></li>
+                        <li><a href="#">Sites Institucionais</a></li>
+                        <li><a href="#">Landing Pages</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Geovani Neumann. Todos os direitos reservados.</p>
+                <p>&copy; 2023 Geovani Neumann. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1191,8 +1405,16 @@
                 portfolioItems.forEach(item => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
                         item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
                     } else {
-                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
                     }
                 });
             });
@@ -1206,6 +1428,14 @@
                 backToTopBtn.classList.add('active');
             } else {
                 backToTopBtn.classList.remove('active');
+            }
+            
+            // Header scroll effect
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
         
@@ -1222,6 +1452,8 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
@@ -1237,6 +1469,50 @@
         if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             document.querySelector('.floating-btn.whatsapp').setAttribute('href', 'whatsapp://send?phone=5541997552818');
         }
+
+        // Adiciona classe active no menu de navegação conforme scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animação de digitação para o título
+        document.addEventListener('DOMContentLoaded', function() {
+            const titleElement = document.querySelector('.hero-text h1');
+            const originalText = titleElement.textContent;
+            
+            // Efeito de digitação apenas se não for preferir redução de movimento
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                titleElement.textContent = '';
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < originalText.length) {
+                        titleElement.textContent += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    }
+                };
+                setTimeout(typeWriter, 500);
+            }
+        });
     </script>
 </body>
 </html>
